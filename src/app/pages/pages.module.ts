@@ -10,6 +10,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 @NgModule({
@@ -18,12 +19,14 @@ import { SharedModule } from '../shared/shared.module';
     ProgressComponent,
     Grafica1Component,
     DashboardComponent,
+    AccountSettingsComponent,
   ],
   exports: [
     PagesComponent,
     ProgressComponent,
     Grafica1Component,
     DashboardComponent,
+    AccountSettingsComponent
   ],
   imports: [
     CommonModule,
