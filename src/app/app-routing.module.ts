@@ -17,6 +17,7 @@ const routes: Routes = [
   //path: '/progress' esta en PagesRouting
   //path: '/grafica1' esta en PagesRouting
   //path: '/auth' esta en AuthRouting
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NotpagefoundComponent},
 ]
 
