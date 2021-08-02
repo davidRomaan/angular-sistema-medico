@@ -32,6 +32,14 @@ export class UserService {
     return this.user.uid || '';
   }
 
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
   createUser(formData: RegisterForm): Observable<any>{
     return this.http.post(`${base_url}/users`, formData, {headers: headers}).pipe(
       tap((resp: any) => {
@@ -99,6 +107,25 @@ export class UserService {
       ...data,
       role: this.user.role
     }
-    return this.http.put(`${base_url}/users/${this.uid}`, data, { headers: { 'x-token': this.token } })
+    return this.http.put(`${base_url}/users/${this.uid}`, data, this.headers)
+  }
+
+  loadUsers(from: number = 0) {
+    const url = `${base_url}/users?from=${from}`;
+    return this.http.get(url, this.headers).pipe(
+      map((res: any) => {
+          const users = res.users.map(user => new User(user.name, user.email, '', user.img, user.google, user.role, user.uid, user.deleted)
+        )
+        return {users: users, total: res.total};
+      })
+    )
+  }
+
+  deleteUser(user: User) {
+    return this.http.delete(`${base_url}/users/${user.uid}`, { headers: { 'x-token': this.token } })
+  }
+
+  updateRole( user: User) {
+    return this.http.put(`${base_url}/users/${user.uid}`, user, this.headers)
   }
 }
