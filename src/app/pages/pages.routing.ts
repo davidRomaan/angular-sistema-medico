@@ -12,6 +12,9 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenances/users/users.component';
+import { HospitalsComponent } from './maintenances/hospitals/hospitals.component';
+import { MedicsComponent } from './maintenances/medics/medics.component';
+import { MedicComponent } from './maintenances/medics/medic/medic.component';
 
 
 
@@ -31,6 +34,9 @@ const routes: Routes = [
             { path: '', redirectTo: '/dashboard', pathMatch: 'full', data: { title: 'Inicio' } },
             
             //mantenimientos
+            { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitales' } },
+            { path: 'medics', component: MedicsComponent, data: { title: 'Medicos' } },
+            { path: 'medic/:id', component: MedicComponent, data: { title: 'Medicos' } },
             { path: 'users', component:UsersComponent, data: { title: 'Usuarios de la aplicación' } },
         ]
     }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { ComponentsModule } from '../components/components.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 import { PagesComponent } from './pages.component';
@@ -16,7 +17,10 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenances/users/users.component';
 
-import { YesnoPipe } from '../pipes/yesno.pipe';
+import { HospitalsComponent } from './maintenances/hospitals/hospitals.component';
+import { MedicsComponent } from './maintenances/medics/medics.component';
+import { MedicComponent } from './maintenances/medics/medic/medic.component';
+
 
 
 @NgModule({
@@ -30,7 +34,9 @@ import { YesnoPipe } from '../pipes/yesno.pipe';
     RxjsComponent,
     ProfileComponent,
     UsersComponent,
-    YesnoPipe
+    HospitalsComponent,
+    MedicsComponent,
+    MedicComponent,
   ],
   exports: [
     PagesComponent,
@@ -45,7 +51,8 @@ import { YesnoPipe } from '../pipes/yesno.pipe';
     AppRoutingModule,
     FormsModule,
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ],
 })
 export class PagesModule { }

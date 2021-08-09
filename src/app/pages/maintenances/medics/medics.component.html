@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="buscar usuarios..." (keyup)="search(txtTerm.value)" #txtTerm>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="loading">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+<!-- tablaa -->
+<div class="row" *ngIf="!loading">
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    <h4 class="card-title">Medicos ({{medics.length}})</h4>
+                    <h6 class="card-subtitle">Medicos registrados en la aplicacion</h6>
+                </div>
+                <div class="col">
+                    <div class="text-right">
+                        <button [routerLink]="['/medic', 'new']"class="btn btn-primary"><i class="fa fa-hospital-o"></i> Crear Nuevo</button> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th class="text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let medic of medics">
+                            <td class="w100"><img (click)="openModal(medic)" [src]="medic.img | image: 'medics'" class="avatar cursor" alt="medic.name"></td>
+                            <td>
+                                <div class="progress progress-xs margin-vertical-10 ">
+                                    <input type="text" [(ngModel)]="medic.name" class="form-control">
+                                </div>
+                            </td>
+                            <td class="text-nowrap text-center w100">
+                                <a [routerLink]="['/medic', medic._id]" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10 cursor"></i> </a>
+                                <a (click)="deleteMedic(medic)" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger cursor"></i> </a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- <button class="btn btn-secondary">Anteriores</button>&nbsp;
+            <button class="btn btn-secondary">Siguientes</button> -->
+        </div>
+    </div>
+</div>
+</div>
+<div *ngIf="medics.length === 0" class="alert alert-primary" role="alert">
+    No hay información para mostrar!
+  </div>
